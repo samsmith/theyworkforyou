@@ -204,10 +204,15 @@ class Divisions {
 
         $details = $this->getParliamentDivisionDetails($q->row(0));
 
+        $args['division_date'] = $q->row(0)['division_date'];
+
         $q = $this->db->query(
-            "SELECT person_id, vote, given_name, family_name
-            FROM persondivisionvotes JOIN person_names USING(person_id)
+            "SELECT pdv.person_id, vote, given_name, family_name, party
+            FROM persondivisionvotes AS pdv JOIN person_names AS pn ON (pdv.person_id = pn.person_id)
+            JOIN member AS m ON (pdv.person_id = m.person_id)
             WHERE division_id = :division_id
+            AND house = 1 AND entered_house <= :division_date AND left_house >= :division_date
+            AND start_date <= :division_date AND end_date >= :division_date
             ORDER by family_name",
             $args
         );
@@ -223,6 +228,7 @@ class Divisions {
             $detail = array(
               'person_id' => $vote['person_id'],
               'name' => $vote['given_name'] . ' ' . $vote['family_name'],
+              'party' => $vote['party'],
               'teller' => false
             );
 
@@ -239,7 +245,6 @@ class Divisions {
             } else if ($vote['vote'] == 'both') {
               $votes['both_votes'][] = $detail;
             }
-
         }
 
         $details = array_merge($details, $votes);

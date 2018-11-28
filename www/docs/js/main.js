@@ -209,4 +209,28 @@ $(function(){
 			}
 		}
 	}, 2000);
+
+    $('.js-vote-accordion').each(function(){
+
+        var $votes = $(this);
+        var $trigger = $('<button>');
+
+        var fold = function() {
+            $votes.children().eq(10).nextAll().addClass('visible-print-block');
+        };
+
+        var unfold = function() {
+            $votes.children().removeClass('visible-print-block');
+            $trigger.remove();
+        };
+
+        fold();
+
+        $trigger.addClass('hidden-print');
+        $trigger.html('<span class="button">Show All</span>');
+        $trigger.on('click', unfold);
+        $trigger.prependTo($votes);
+
+    });
+
 });

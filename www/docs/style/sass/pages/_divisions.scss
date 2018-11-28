@@ -1,0 +1,95 @@
+.division-result {
+  margin: 0;
+
+  p {
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.4em;
+
+    & + p {
+      margin-top: 0.5em;
+    }
+  }
+}
+
+.search-result--person {
+  @include clearfix();
+
+  img {
+    float: left;
+    margin-right: 0.8em;
+    width: 2.5em;
+  }
+
+  h3 {
+    margin-bottom: 0.2em;
+  }
+}
+.division-dots {
+    list-style-type: none;
+    line-height: 0.7em;
+    li {
+        display: inline;
+        height: 0.6em;
+        &.people-list__person__party::before {
+          height: 0.45em;
+          width: 0.45em;
+          @include border-radius(0.45em);
+          margin-right: 0px;
+          padding: 0px;
+        }
+
+        &:nth-child(5n) {
+          margin-right: 1em;
+        }
+        &:nth-child(125n+1)::after {
+          content: "";
+          display: inline-block;
+          padding-bottom: 1em;
+        }
+    }
+}
+
+.division-section__vote {
+    ul {
+        list-style-type: none;
+        margin-left: 0px;
+    }
+    @media (min-width: $medium-screen) {
+        padding: 1em 1.5em 0 1.5em;
+        float: left;
+        width: 24.5em;
+    }
+    .js-vote-accordion {
+        button {
+           display:block;
+           position:relative;
+           z-index:1;
+           margin-bottom: -3em;
+           padding-bottom: 0;
+           top:16.5em;
+           width:100%;
+           width:calc(100% - 2em);
+           text-align:center;
+           border:0;
+           background:transparent linear-gradient(to bottom,transparent 50%,#fff) 0 0 no-repeat;
+           box-shadow: none;
+        }
+    .visible-print-block {
+        display: none !important;
+    }
+    .hidden-print {
+      .button {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.debate-speech:nth-child(2n) {
+    .js-vote-accordion {
+      button {
+           background:transparent linear-gradient(to bottom,transparent 50%,#f3f1eb) 0 0 no-repeat;
+      }
+    }
+}
