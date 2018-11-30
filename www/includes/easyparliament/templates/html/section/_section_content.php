@@ -103,7 +103,12 @@
 
             <a name="g<?= gid_to_anchor($speech['gid']) ?>"></a>
 
+
+            <?php if ($speech['htype'] == 14 && $speech['division']) { ?>
+            <div class="debate-speech__division">
+            <?php } else { ?>
             <div class="debate-speech__speaker-and-content">
+            <?php } ?>
 
           <?php if(isset($speech['speaker']) && count($speech['speaker']) > 0) { ?>
             <h2 class="debate-speech__speaker">
@@ -160,7 +165,19 @@
 
 
           <?php } ?>
+            <?php if ($speech['htype'] == 14 && $speech['division']) {
+                $division = $speech['division'];
+//                var_dump($division); 
+?>
+                <h2 class="debate-speech__division__details">
+                    <img src="/images/bell.png">
+                    <small class="debate-speech__division__number">Division number <?= $division['number'] ?></small>
+                    <strong class="debate-speech__division__title"><?= $division['division_title'] ?></strong>
+                </h2>
+                <?php include dirname(__FILE__) . '/../divisions/_votes.php';
+            } else { ?>
             <div class="debate-speech__content"><?=$body ?></div>
+            <?php } ?>
 
             <?php if ( $section ) {
                 if ($speech['voting_data']) { ?>

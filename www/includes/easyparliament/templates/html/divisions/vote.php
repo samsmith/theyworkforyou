@@ -129,4 +129,10 @@
     </div>
 </div>
 
-<?php include '_votes.php' ?>
+<div class="debate-speech">
+    <div class="full-page__row">
+        <div class="full-page__unit">
+        <?php include '_votes.php' ?>
+        </div>
+    </div>
+</div>

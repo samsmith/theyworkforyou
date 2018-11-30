@@ -23,12 +23,6 @@ if ($mp = get_http_var('p')) {
 $divisions = new MySociety\TheyWorkForYou\Divisions();
 $division_votes = $divisions->getDivisionResults($vote);
 
-foreach (array('yes_votes', 'no_votes', 'absent_votes', 'both_votes') as $vote) {
-  $division_votes[$vote . '_by_party'] = $division_votes[$vote];
-  usort($division_votes[$vote . '_by_party'], function ($a, $b) {
-        return $a['party']>$b['party'];
-    });
-}
 
 $data = array('division' => $division_votes);
 

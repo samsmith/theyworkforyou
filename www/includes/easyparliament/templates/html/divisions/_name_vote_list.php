@@ -19,10 +19,6 @@
                         <p>
                           Tellers: <?= implode(', ', $tellers) ?>
                         </p>
-                        <?php } else { ?>
-                        <p>
-                        None
-                        </p>
                     <?php
                     }
                 } ?>

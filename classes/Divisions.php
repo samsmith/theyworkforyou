@@ -192,6 +192,19 @@ class Divisions {
         return $policy_divisions;
     }
 
+    public function getDivisionByGid($gid) {
+        $args = array(
+            ':gid' => $gid
+        );
+        $q = $this->db->query("SELECT * FROM divisions WHERE gid = :gid", $args);
+
+        if ($q->rows == 0) {
+            return false;
+        }
+
+        return $this->_division_data($q);
+    }
+
     public function getDivisionResults($division_id) {
         $args = array(
             ':division_id' => $division_id
@@ -202,8 +215,16 @@ class Divisions {
             return false;
         }
 
+        return $this->_division_data($q);
+
+    }
+
+    private function _division_data($q) {
+
         $details = $this->getParliamentDivisionDetails($q->row(0));
 
+
+        $args['division_id'] = $q->row(0)['division_id'];
         $args['division_date'] = $q->row(0)['division_date'];
 
         $q = $this->db->query(
@@ -245,6 +266,13 @@ class Divisions {
             } else if ($vote['vote'] == 'both') {
               $votes['both_votes'][] = $detail;
             }
+        }
+
+        foreach ($votes as $vote => $count) { // array('yes_votes', 'no_votes', 'absent_votes', 'both_votes') as $vote) {
+          $votes[$vote . '_by_party'] = $votes[$vote];
+          usort($votes[$vote . '_by_party'], function ($a, $b) {
+                return $a['party']>$b['party'];
+            });
         }
 
         $details = array_merge($details, $votes);

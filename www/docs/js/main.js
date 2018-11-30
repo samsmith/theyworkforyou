@@ -224,12 +224,14 @@ $(function(){
             $trigger.remove();
         };
 
-        fold();
+        if ( $votes.children().length > 10 ) {
+          fold();
 
-        $trigger.addClass('hidden-print');
-        $trigger.html('<span class="button">Show All</span>');
-        $trigger.on('click', unfold);
-        $trigger.prependTo($votes);
+          $trigger.addClass('hidden-print');
+          $trigger.html('<span class="button">Show All</span>');
+          $trigger.on('click', unfold);
+          $trigger.appendTo($votes);
+        }
 
     });
 

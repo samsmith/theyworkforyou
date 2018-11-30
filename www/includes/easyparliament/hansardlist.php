@@ -1834,6 +1834,13 @@ class HANSARDLIST {
                     }
                 }
 
+                if ($item['htype'] == 14) {
+                  $vote = 
+$divisions = new MySociety\TheyWorkForYou\Divisions();
+$division_votes = $divisions->getDivisionByGid('uk.org.publicwhip/debate/' . $item['gid']);
+                    $item['division'] = $division_votes;
+                }
+
 
                 // We generate two permalinks for each item:
                 // 'listurl' is the URL of the item in the full list view.

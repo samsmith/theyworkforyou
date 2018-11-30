@@ -1,5 +1,40 @@
+.debate-speech__division__details {
+    width: 60%;
+
+    img {
+      float: left;
+      margin-right: 10px;
+      max-width: 50px;
+    }
+
+    small, strong {
+      display: block;
+    }
+
+    small {
+      padding-bottom: 0.5em;
+    }
+
+    @media (min-width: $medium-screen) {
+      font-size: 1.4em; // down from default 1.7em
+      position: relative;
+      padding-left: 70px;
+
+      img {
+        position: absolute;
+        left: 0;
+      }
+    }
+
+    .debate-speech__division__number {
+    }
+
+    .debate-speech__divison__title {
+    }
+}
 .division-result {
   margin: 0;
+  padding-left: 70px;
 
   p {
     margin: 0;
@@ -9,6 +44,10 @@
     & + p {
       margin-top: 0.5em;
     }
+  }
+
+  &:nth-of-type(2n+1) {
+    clear: both;
   }
 }
 
@@ -28,6 +67,10 @@
 .division-dots {
     list-style-type: none;
     line-height: 0.7em;
+    width: 17em;
+    @media (min-width: $medium-screen) {
+        width: auto;
+    }
     li {
         display: inline;
         height: 0.6em;
@@ -42,10 +85,24 @@
         &:nth-child(5n) {
           margin-right: 1em;
         }
-        &:nth-child(125n+1)::after {
+
+        &:nth-child(100n+1)::after {
           content: "";
           display: inline-block;
           padding-bottom: 1em;
+        }
+
+        @media (min-width: $medium-screen) {
+          &:nth-child(100n+1)::after {
+            content: "";
+            display: none;
+          }
+
+          &:nth-child(125n+1)::after {
+            content: "";
+            display: inline-block;
+            padding-bottom: 1em;
+          }
         }
     }
 }
@@ -56,18 +113,18 @@
         margin-left: 0px;
     }
     @media (min-width: $medium-screen) {
-        padding: 1em 1.5em 0 1.5em;
+        padding: 1em 1.5em 0 0em;
         float: left;
-        width: 24.5em;
+        width: 23em;
     }
     .js-vote-accordion {
         button {
            display:block;
            position:relative;
            z-index:1;
-           margin-bottom: -3em;
-           padding-bottom: 0;
-           top:16.5em;
+           padding-bottom: 1em;
+           top:-4em;
+           margin-bottom: -4em;
            width:100%;
            width:calc(100% - 2em);
            text-align:center;
