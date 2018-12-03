@@ -1,6 +1,11 @@
-.debate-speech__division__details {
-    width: 60%;
+.debate-speech__division {
+    @media (min-width: $medium-screen) {
+        width: 70%;
+        float: left;
+    }
+}
 
+.debate-speech__division__details {
     img {
       float: left;
       margin-right: 10px;
@@ -34,7 +39,9 @@
 }
 .division-result {
   margin: 0;
-  padding-left: 70px;
+  @media (min-width: $medium-screen) {
+    padding-left: 70px;
+  }
 
   p {
     margin: 0;
@@ -67,9 +74,12 @@
 .division-dots {
     list-style-type: none;
     line-height: 0.7em;
-    width: 17em;
+    width: 15em;
     @media (min-width: $medium-screen) {
-        width: auto;
+        width: 11.5em;
+    }
+    @media (min-width: $large-screen) {
+        width: 15em;
     }
     li {
         display: inline;
@@ -83,7 +93,7 @@
         }
 
         &:nth-child(5n) {
-          margin-right: 1em;
+          margin-right: 0.5em;
         }
 
         &:nth-child(100n+1)::after {
@@ -93,16 +103,29 @@
         }
 
         @media (min-width: $medium-screen) {
-          &:nth-child(100n+1)::after {
-            content: "";
-            display: none;
-          }
+            &:nth-child(100n+1)::after {
+              content: "";
+              display: none;
+            }
 
-          &:nth-child(125n+1)::after {
-            content: "";
-            display: inline-block;
-            padding-bottom: 1em;
-          }
+            &:nth-child(75n+1)::after {
+              content: "";
+              display: inline-block;
+              padding-bottom: 1em;
+            }
+        }
+
+        @media (min-width: $large-screen) {
+            &:nth-child(75n+1)::after {
+              content: "";
+              display: none;
+            }
+
+            &:nth-child(125n+1)::after {
+              content: "";
+              display: inline-block;
+              padding-bottom: 1em;
+            }
         }
     }
 }
@@ -113,9 +136,9 @@
         margin-left: 0px;
     }
     @media (min-width: $medium-screen) {
-        padding: 1em 1.5em 0 0em;
+        width: 50%;
+        padding: 1em 2em 0 0em;
         float: left;
-        width: 23em;
     }
     .js-vote-accordion {
         button {
