@@ -37,6 +37,69 @@
     .debate-speech__divison__title {
     }
 }
+
+.debate-speech__division__mp-vote {
+    background-color: #FFFCD9; // very light yellow
+    border: 1px solid $body-bg;
+    padding: 0.5em;
+
+    @media (min-width: $medium-screen) {
+        margin-left: 70px;
+    }
+
+    .mp-vote__person {
+      display: block;
+      padding: 0.5em 0 0 60px;
+      border-top: 1px solid $body-bg;
+      position: relative;
+      color: inherit;
+
+      .mp-vote__person__name {
+          margin: 0;
+          color: black;
+      }
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        color: inherit;
+
+        .mp-vote__person__name {
+          color: $colour_primary;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    h2 {
+        margin-top: 0;
+        font-size: 1.5em;
+        line-height: 1.1em;
+    }
+
+    .mp-vote__result {
+      padding: 0.1em 0.5em;
+      margin: 0.4em 0.5em 0 0;
+      background-color: $colour_primary;
+      color: white;
+      float: left;
+      font-weight: bold;
+      font-size: 1.7em;
+      border-radius: 5px
+    }
+
+    .people-list__person__image {
+        position: relative;
+        float: left;
+        top: 0;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+}
+
 .division-result {
   margin: 0;
   @media (min-width: $medium-screen) {
@@ -171,5 +234,13 @@
       button {
            background:transparent linear-gradient(to bottom,transparent 50%,#f3f1eb) 0 0 no-repeat;
       }
+    }
+}
+
+.people-list__your-mp {
+    background-color: #FFFCD9; // very light yellow
+
+    @media (min-width: $medium-screen) {
+        margin-left: 70px;
     }
 }

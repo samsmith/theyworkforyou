@@ -1620,7 +1620,8 @@ class HANSARDLIST {
     }
 
     protected function _get_hansard_data($input) {
-        global $hansardmajors;
+        global $hansardmajors, $MEMBER;
+
         // Generic function for getting hansard data from the DB.
         // It returns an empty array if no data was found.
         // It returns an array of items if 1 or more were found.
@@ -1835,10 +1836,12 @@ class HANSARDLIST {
                 }
 
                 if ($item['htype'] == 14) {
-                  $vote = 
-$divisions = new MySociety\TheyWorkForYou\Divisions();
-$division_votes = $divisions->getDivisionByGid('uk.org.publicwhip/debate/' . $item['gid']);
+                    $vote = $divisions = new MySociety\TheyWorkForYou\Divisions();
+                    $division_votes = $divisions->getDivisionByGid('uk.org.publicwhip/debate/' . $item['gid']);
                     $item['division'] = $division_votes;
+                    if (isset($MEMBER)) {
+                      $item['mp_vote'] = $divisions->getDivisionResultsForMember($division_votes['division_id'], $MEMBER->person_id());
+                    }
                 }
 
 
@@ -2316,7 +2319,12 @@ $division_votes = $divisions->getDivisionByGid('uk.org.publicwhip/debate/' . $it
 
         // We need to get the data for this gid.
         // Then depending on what htype it is, we get the data for other items too.
-        global $DATA, $this_page, $hansardmajors;
+        global $DATA, $this_page, $hansardmajors, $MEMBER, $THEUSER;
+
+        // use this for generating member vote data
+        if ($THEUSER->postcode_is_set()) {
+            $MEMBER = new MySociety\TheyWorkForYou\Member(array('postcode' => $THEUSER->postcode(), 'house' => $this->major_to_house[$this->major][0]));
+        }
 
         twfy_debug (get_class($this), "getting data by gid");
 

@@ -167,15 +167,36 @@
           <?php } ?>
             <?php if ($speech['htype'] == 14 && $speech['division']) {
                 $division = $speech['division'];
-//                var_dump($division); 
-?>
+                ?>
                 <h2 class="debate-speech__division__details">
                     <img src="/images/bell.png">
                     <small class="debate-speech__division__number">Division number <?= $division['number'] ?></small>
                     <strong class="debate-speech__division__title"><?= $division['division_title'] ?></strong>
                 </h2>
-                <?php include dirname(__FILE__) . '/../divisions/_votes.php';
-            } else { ?>
+                <?php if (isset($speech['mp_vote'])) { ?>
+                <div class="debate-speech__division__mp-vote">
+                    <div class="people-list__your-mp__header">
+                      <p>
+                          Based on postcode <strong><?= $data['mp_data']['postcode'] ?></strong>
+                          <a href="<?= $data['mp_data']['change_url'] ?>">(Change postcode)</a>
+                      </p>
+                      <h3>How your MP voted:</h3>
+                    </div>
+                      <p class="mp-vote__result"><?= $speech['mp_vote']['vote'] ?></p>
+                      <a href="<?= $data['mp_data']['mp_url'] ?>" class="mp-vote__person">
+                        <img class="people-list__person__image" src="<?= $data['mp_data']['image'] ?>">
+                        <h2 class="mp-vote__person__name"><?= $data['mp_data']['name'] ?></h2>
+                        <p class="people-list__person__memberships">
+                            <span class="people-list__person__constituency"><?= $data['mp_data']['constituency'] ?></span>
+                            <span class="people-list__person__party <?= strtolower( $data['mp_data']['party'] ) ?>"><?= $data['mp_data']['party'] ?></span>
+                        </p>
+                    </a>
+                </div>
+                <?php } ?>
+                <div>
+                <?php include dirname(__FILE__) . '/../divisions/_votes.php'; ?>
+                </div>
+            <?php } else { ?>
             <div class="debate-speech__content"><?=$body ?></div>
             <?php } ?>
 
