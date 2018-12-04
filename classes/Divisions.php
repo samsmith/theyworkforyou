@@ -245,6 +245,13 @@ class Divisions {
           'both_votes' => array()
         );
 
+        $party_breakdown = array(
+          'yes_votes' => array(),
+          'no_votes' => array(),
+          'absent_votes' => array(),
+          'both_votes' => array()
+        );
+
         foreach ($q->data as $vote) {
             $detail = array(
               'person_id' => $vote['person_id'],
@@ -259,12 +266,16 @@ class Divisions {
 
             if ($vote['vote'] == 'aye' or $vote['vote'] == 'tellaye') {
               $votes['yes_votes'][] = $detail;
+              @$party_breakdown['yes_votes'][$detail['party']]++;
             } else if ($vote['vote'] == 'no' or $vote['vote'] == 'tellno') {
               $votes['no_votes'][] = $detail;
+              @$party_breakdown['no_votes'][$detail['party']]++;
             } else if ($vote['vote'] == 'absent') {
               $votes['absent_votes'][] = $detail;
+              @$party_breakdown['absent_votes'][$detail['party']]++;
             } else if ($vote['vote'] == 'both') {
               $votes['both_votes'][] = $detail;
+              @$party_breakdown['both_votes'][$detail['party']]++;
             }
         }
 
@@ -275,7 +286,18 @@ class Divisions {
             });
         }
 
+        foreach ($party_breakdown as $vote => $parties) {
+            $summary = array();
+            foreach ($parties as $party => $count) {
+                array_push($summary, "$party: $count");
+            }
+
+            sort($summary);
+            $party_breakdown[$vote] = implode(', ', $summary);
+        }
+
         $details = array_merge($details, $votes);
+        $details['party_breakdown'] = $party_breakdown;
 
         return $details;
     }

@@ -28,6 +28,7 @@
             $vote_title = $vote['title'];
             $anchor = $vote['anchor'];
             $votes = $division[$vote['thekey'] . '_by_party'];
+            $summary = $division['party_breakdown'][$vote['thekey']];
             include '_dot_vote_list.php';
         ?>
         </div>
