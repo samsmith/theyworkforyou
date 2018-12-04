@@ -1,103 +1,98 @@
 .debate-speech__division {
-    @media (min-width: $medium-screen) {
-        width: 70%;
-        float: left;
-    }
+  @media (min-width: $medium-screen) {
+    width: 70%;
+    float: left;
+  }
 }
 
 .debate-speech__division__details {
+  img {
+    float: left;
+    margin-right: 10px;
+    max-width: 50px;
+  }
+
+  small, strong {
+    display: block;
+  }
+
+  small {
+    padding-bottom: 0.5em;
+  }
+
+  @media (min-width: $medium-screen) {
+    font-size: 1.4em; // down from default 1.7em
+    position: relative;
+    padding-left: 70px;
+
     img {
-      float: left;
-      margin-right: 10px;
-      max-width: 50px;
+      position: absolute;
+      left: 0;
     }
-
-    small, strong {
-      display: block;
-    }
-
-    small {
-      padding-bottom: 0.5em;
-    }
-
-    @media (min-width: $medium-screen) {
-      font-size: 1.4em; // down from default 1.7em
-      position: relative;
-      padding-left: 70px;
-
-      img {
-        position: absolute;
-        left: 0;
-      }
-    }
-
-    .debate-speech__division__number {
-    }
-
-    .debate-speech__divison__title {
-    }
+  }
 }
 
 .debate-speech__division__mp-vote {
-    background-color: #FFFCD9; // very light yellow
-    border: 1px solid $body-bg;
-    padding: 0.5em;
+  background-color: #FFFCD9; // very light yellow
+  border: 1px solid $body-bg;
+  padding: 0.5em;
 
-    @media (min-width: $medium-screen) {
-        margin-left: 70px;
+  @media (min-width: $medium-screen) {
+    margin-left: 70px;
+  }
+
+  .mp-vote__person {
+    display: block;
+    padding: 0.5em 0 0 60px;
+    border-top: 1px solid $body-bg;
+    position: relative;
+    color: inherit;
+
+    .mp-vote__person__name {
+      margin: 0;
+      color: black;
     }
 
-    .mp-vote__person {
-      display: block;
-      padding: 0.5em 0 0 60px;
-      border-top: 1px solid $body-bg;
-      position: relative;
+    &:hover,
+    &:focus {
+      text-decoration: none;
       color: inherit;
 
       .mp-vote__person__name {
-          margin: 0;
-          color: black;
-      }
-      &:hover,
-      &:focus {
-        text-decoration: none;
-        color: inherit;
-
-        .mp-vote__person__name {
-          color: $colour_primary;
-          text-decoration: underline;
-        }
+        color: $colour_primary;
+        text-decoration: underline;
       }
     }
+  }
 
-    h2 {
-        margin-top: 0;
-        font-size: 1.5em;
-        line-height: 1.1em;
-    }
+  h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    line-height: 1.1em;
+  }
 
-    .mp-vote__result {
-      padding: 0.1em 0.5em;
-      margin: 0.4em 0.5em 0 0;
-      background-color: $colour_primary;
-      color: white;
-      float: left;
-      font-weight: bold;
-      font-size: 1.7em;
-      border-radius: 5px
-    }
+  .mp-vote__result {
+    padding: 0.1em 0.5em;
+    margin: 0.4em 0.5em 0 0;
+    background-color: $colour_primary;
+    color: white;
+    float: left;
+    font-weight: bold;
+    font-size: 1.7em;
+    border-radius: 5px
+  }
 
-    .people-list__person__image {
-        position: relative;
-        float: left;
-        top: 0;
-    }
+  .people-list__person__image {
+    position: relative;
+    float: left;
+    top: 0;
+  }
 
-    &:after {
-      content: "";
-      display: block;
-      clear: both;
-    }
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
 }
 
 .division-result {
@@ -106,120 +101,100 @@
     padding-left: 70px;
   }
 
-  p {
-    margin: 0;
-    font-size: 0.9em;
-    line-height: 1.4em;
-
-    & + p {
-      margin-top: 0.5em;
-    }
-  }
-
   &:nth-of-type(2n+1) {
     clear: both;
   }
 }
 
-.search-result--person {
-  @include clearfix();
-
-  img {
-    float: left;
-    margin-right: 0.8em;
-    width: 2.5em;
-  }
-
-  h3 {
-    margin-bottom: 0.2em;
-  }
-}
 .division-dots {
-    list-style-type: none;
-    line-height: 0.7em;
+  list-style-type: none;
+  line-height: 0.7em;
+  width: 15em;
+  @media (min-width: $medium-screen) {
+    width: 11.5em;
+  }
+  @media (min-width: $large-screen) {
     width: 15em;
+  }
+  li {
+    display: inline;
+    height: 0.6em;
+
+    &.people-list__person__party::before {
+      height: 0.45em;
+      width: 0.45em;
+      @include border-radius(0.45em);
+      margin-right: 0px;
+      padding: 0px;
+    }
+
+    &:nth-child(5n) {
+      margin-right: 0.5em;
+    }
+
+    &:nth-child(100n+1)::after {
+      content: "";
+      display: inline-block;
+      padding-bottom: 1em;
+    }
+
     @media (min-width: $medium-screen) {
-        width: 11.5em;
+      &:nth-child(100n+1)::after {
+        content: "";
+        display: none;
+      }
+
+      &:nth-child(75n+1)::after {
+        content: "";
+        display: inline-block;
+        padding-bottom: 1em;
+      }
     }
+
     @media (min-width: $large-screen) {
-        width: 15em;
+      &:nth-child(75n+1)::after {
+        content: "";
+        display: none;
+      }
+
+      &:nth-child(125n+1)::after {
+        content: "";
+        display: inline-block;
+        padding-bottom: 1em;
+      }
     }
-    li {
-        display: inline;
-        height: 0.6em;
-        &.people-list__person__party::before {
-          height: 0.45em;
-          width: 0.45em;
-          @include border-radius(0.45em);
-          margin-right: 0px;
-          padding: 0px;
-        }
-
-        &:nth-child(5n) {
-          margin-right: 0.5em;
-        }
-
-        &:nth-child(100n+1)::after {
-          content: "";
-          display: inline-block;
-          padding-bottom: 1em;
-        }
-
-        @media (min-width: $medium-screen) {
-            &:nth-child(100n+1)::after {
-              content: "";
-              display: none;
-            }
-
-            &:nth-child(75n+1)::after {
-              content: "";
-              display: inline-block;
-              padding-bottom: 1em;
-            }
-        }
-
-        @media (min-width: $large-screen) {
-            &:nth-child(75n+1)::after {
-              content: "";
-              display: none;
-            }
-
-            &:nth-child(125n+1)::after {
-              content: "";
-              display: inline-block;
-              padding-bottom: 1em;
-            }
-        }
-    }
+  }
 }
 
 .division-section__vote {
-    ul {
-        list-style-type: none;
-        margin-left: 0px;
+  ul {
+    list-style-type: none;
+    margin-left: 0px;
+  }
+
+  @media (min-width: $medium-screen) {
+    width: 50%;
+    padding: 1em 2em 0 0em;
+    float: left;
+  }
+
+  .js-vote-accordion {
+    button {
+      display:block;
+      position:relative;
+      z-index:1;
+      padding-bottom: 1em;
+      top:-4em;
+      margin-bottom: -4em;
+      width:100%;
+      width:calc(100% - 2em);
+      text-align:center;
+      border:0;
+      background:transparent linear-gradient(to bottom,transparent 50%,#fff) 0 0 no-repeat;
+      box-shadow: none;
     }
-    @media (min-width: $medium-screen) {
-        width: 50%;
-        padding: 1em 2em 0 0em;
-        float: left;
-    }
-    .js-vote-accordion {
-        button {
-           display:block;
-           position:relative;
-           z-index:1;
-           padding-bottom: 1em;
-           top:-4em;
-           margin-bottom: -4em;
-           width:100%;
-           width:calc(100% - 2em);
-           text-align:center;
-           border:0;
-           background:transparent linear-gradient(to bottom,transparent 50%,#fff) 0 0 no-repeat;
-           box-shadow: none;
-        }
     .visible-print-block {
-        display: none !important;
+      display: none !important;
     }
     .hidden-print {
       .button {
@@ -230,17 +205,9 @@
 }
 
 .debate-speech:nth-child(2n) {
-    .js-vote-accordion {
-      button {
-           background:transparent linear-gradient(to bottom,transparent 50%,#f3f1eb) 0 0 no-repeat;
-      }
+  .js-vote-accordion {
+    button {
+      background:transparent linear-gradient(to bottom,transparent 50%,#f3f1eb) 0 0 no-repeat;
     }
-}
-
-.people-list__your-mp {
-    background-color: #FFFCD9; // very light yellow
-
-    @media (min-width: $medium-screen) {
-        margin-left: 70px;
-    }
+  }
 }
