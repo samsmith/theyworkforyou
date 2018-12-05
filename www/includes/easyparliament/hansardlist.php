@@ -2322,8 +2322,12 @@ class HANSARDLIST {
         global $DATA, $this_page, $hansardmajors, $MEMBER, $THEUSER;
 
         // use this for generating member vote data
-        if ($THEUSER->postcode_is_set()) {
-            $MEMBER = new MySociety\TheyWorkForYou\Member(array('postcode' => $THEUSER->postcode(), 'house' => $this->major_to_house[$this->major][0]));
+        if (isset($THEUSER) && $THEUSER->postcode_is_set()) {
+            try {
+                $MEMBER = new MySociety\TheyWorkForYou\Member(array('postcode' => $THEUSER->postcode(), 'house' => $this->major_to_house[$this->major][0]));
+            } catch ( MySociety\TheyWorkForYou\MemberException $e ) {
+                $MEMBER = null;
+            }
         }
 
         twfy_debug (get_class($this), "getting data by gid");
