@@ -129,6 +129,8 @@ if (!count($data)) {
                     <?php } else { ?>
                     <li><strong>Sorted by</strong> Name</li>
                     <li>Sort by <a href="<?= $urls['by_party'] ?>">Party</a></li>
+                    <li><a href="/debates/#lords">Looking for Lords Debates?</a></a>
+
                     <?php } ?>
                 </ul>
                 <?php } ?>
